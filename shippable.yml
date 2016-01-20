@@ -8,6 +8,7 @@ services:
 
 env:
   global:
+    - APP_NAME=sreyaheroku
     - STAGING_APP_NAME=thawing-journey-6674 PRODUCTION_APP_NAME=fierce-river-3820
     - MONGOLAB_URI=mongodb://localhost/test
     - XUNIT_FILE=shippable/testresults/result.xml
@@ -28,3 +29,4 @@ after_success:
   - ./node_modules/.bin/istanbul cover grunt -- -u tdd
   - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
   - ./deploy.sh
+  - git push -f git@heroku.com:$APP_NAME.git master
